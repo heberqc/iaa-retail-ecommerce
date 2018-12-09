@@ -23,3 +23,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+.cart {
+  padding: 10px;
+  min-height: var(--min-height);
+}
+
+.cart ion-icon {
+  height: 1.5em;
+  width: 1.5em;
+}

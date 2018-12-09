@@ -6,7 +6,7 @@ import { Component, Prop, State } from '@stencil/core';
 })
 export class AppHome {
   // @Prop() productos:any[];
-  @Prop() productos = [
+  @Prop() productos:any[] = [
     {photo:'/assets/icon/icon.png', name: 'Objeto 1'},{photo:'/assets/icon/icon.png', name: 'Objeto 2'},
     {photo:'/assets/icon/icon.png', name: 'Objeto 3'},{photo:'/assets/icon/icon.png', name: 'Objeto 4'},
     {photo:'/assets/icon/icon.png', name: 'Objeto 5'},{photo:'/assets/icon/icon.png', name: 'Objeto 6'},
@@ -22,10 +22,15 @@ export class AppHome {
       <ion-card class="product-card">
         <img src={producto.photo} alt={producto.name}/>
         <h1>{producto.name}</h1>
-        <ion-button>Agregar al<br/>carrito</ion-button>
+        <ion-button onClick={() => this.addToCart(producto)}>Agregar al<br/>carrito</ion-button>
       </ion-card>
     ))
   }
+
+  addToCart(product:any) {
+    this.cartProducts = [...this.cartProducts, product];
+  }
+
   render() {
     return [
       <ion-header>
@@ -40,15 +45,11 @@ export class AppHome {
               <ion-icon name="search"></ion-icon>
               <ion-input type="text" placeholder="Buscar" value=""></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-button class="cart" color="light">
               <ion-icon name="cart"></ion-icon>
-              <ion-input
-                value={`${this.cartProducts.length} ${this.cartProducts.length === 1 ? 'producto' : 'productos'}`}
-                slot="end"
-                readonly
-              >
-              </ion-input>
-            </ion-item>
+              <ion-badge>{`${this.cartProducts.length}`}</ion-badge>
+              {/* <ion-label>{`${this.cartProducts.length === 1? 'producto' : 'productos'}`}</ion-label> */}
+            </ion-button>
           </div>
         </div>
         <h1>Productos</h1>

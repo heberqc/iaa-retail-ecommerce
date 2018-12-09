@@ -14,10 +14,10 @@ import 'ionicons';
 export namespace Components {
 
   interface AppHome {
-    'productos': any;
+    'productos': any[];
   }
   interface AppHomeAttributes extends StencilHTMLAttributes {
-    'productos'?: any;
+    'productos'?: any[];
   }
 
   interface AppProfile {
